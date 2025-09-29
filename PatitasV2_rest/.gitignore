@@ -1,17 +1,6 @@
 # Node / React / Expo
-node_modules/
-dist/
-build/
-.cache/
-.expo/
-.expo-shared/
+node_modules
 
 
 # Carpetas donde estaban las claves
 
-
-# Django / Python (si llegas a usarlo)
-__pycache__/
-*.pyc
-*.sqlite3
-venv/
