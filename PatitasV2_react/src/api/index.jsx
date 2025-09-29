@@ -5,11 +5,11 @@ import axios from "axios";
 // En Vercel la pondremos a: https://patitashost.onrender.com
 const apiBaseURL = import.meta.env.VITE_API_URL;
 
-export const client = axios.create({
-  baseURL: apiBaseURL?.replace(/\/+$/, ""), // sin slash final por seguridad
-  timeout: 90000,
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true, // si NO usas cookies/sesión puedes poner false
+const client = axios.create({
+  baseURL: apiBaseURL?.replace(/\/+$/, ""), // quita slash final
+  headers: { Accept: "application/json", "Content-Type": "application/json" },
+  withCredentials: false, // <- muy importante si no usas cookies
+  timeout: 15000,
 });
 
 // limpia strings vacíos de JSON
