@@ -1,26 +1,45 @@
-import jwt from 'jsonwebtoken';
-// Función para verificar el token JWT
-export async function verifyToken(token) {
+import jwt from "jsonwebtoken";
+
+/** Lee el token desde Authorization o cookie "heaven" */
+function extractToken(req) {
+  // 1) Authorization: "Bearer <token>" o token crudo
+  const auth = req.headers["authorization"] || "";
+  if (auth) {
+    if (auth.startsWith("Bearer ")) return auth.slice(7).trim();
+    return auth.trim();
+  }
+
+  // 2) Cookie "heaven"
+  const c = req.cookies?.heaven;
+  if (c) {
+    // Si alguna vez guardaste con prefijo/sufijo, intenta recortar,
+    // si no, devuélvelo tal cual
     try {
-        if (!token) return null;
-        const userToken = jwt.verify(token, process.env.JWT_SECRET);
-        //Descomentar para mayor seguridad de verificacion
-        //import User from '../modules/user/model.js'; //llevar arriba
-        //const currentUser = await User.findById(userToken.id);
-        //incluir all_permissions
-        //return {currentUser}
-        return userToken;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+      if (c.length > 20) {
+        const maybe = c.slice(7, -7);
+        if (maybe.length > 10) return maybe.trim();
+      }
+    } catch (_) {}
+    return c.trim();
+  }
+
+  return null;
 }
 
-// Middleware principal para verificar el token JWT
-export default async function (req, res, next) {
-    const token = (req.cookies && req.cookies.heaven) ? req.cookies.heaven.slice(7, -7) : null;
-    const user = await verifyToken(token);
-    // Agrega la información del usuario autenticado a la solicitud
-    req.currentUser = user;
-    next();
+function verifyToken(token) {
+  try {
+    if (!token) return null;
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    // si firmaste como { user: {...} } devuelve user; si no, payload completo
+    return payload?.user ? payload.user : payload;
+  } catch {
+    return null;
+  }
+}
+
+export default function authentication(req, _res, next) {
+  const token = extractToken(req);
+  const currentUser = verifyToken(token);
+  req.currentUser = currentUser; // null si no hay/vale
+  next();
 }

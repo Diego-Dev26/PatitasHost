@@ -1,8 +1,13 @@
-import authMiddleware from './authentication.js';
-import queryMiddleware from './query.js';
+import authentication from "./authentication.js";
+import queryMiddleware from "./query.js";
 
-// Middleware compuesto que combina todos los middleware personalizados
-export default function (app) {
-    app.use(authMiddleware);
-    app.use(queryMiddleware);
-};
+export default function configureMiddleware(app) {
+  // Asegúrate que ANTES de esto ya hiciste:
+  // app.set("trust proxy", 1);
+  // app.use(cors({ origin: ..., credentials: true }));
+  // app.use(express.json());
+  // app.use(cookieParser());
+
+  app.use(authentication);   // ← importante: antes de las rutas
+  app.use(queryMiddleware);  // crea req.body.query si no existe
+}
