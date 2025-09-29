@@ -1,40 +1,31 @@
 // middleware/authentication.js
 import jwt from "jsonwebtoken";
 
-/**
- * Intenta extraer el token JWT desde:
- *  1) Header Authorization ("Bearer <token>" o token crudo)
- *  2) Cookie "heaven" (cruda o con prefijo/sufijo antiguos)
- */
+/** Extrae token desde Authorization (Bearer upper/lower) o cookie "heaven" */
 function extractToken(req) {
-  // 1) Authorization
   const auth = req.headers["authorization"] || "";
-  if (auth) {
-    if (auth.startsWith("Bearer ")) return auth.slice(7).trim();
-    return auth.trim();
-  }
 
-  // 2) Cookie "heaven"
+  // Acepta 'Bearer <token>' o 'bearer <token>' (case-insensitive)
+  const m = auth.match(/^bearer\s+(.+)$/i);
+  if (m && m[1]) return m[1].trim();
+
+  // Si vino un token "crudo" sin 'Bearer', úsalo igual
+  if (auth) return auth.trim();
+
+  // Cookie "heaven" (cruda o con adornos antiguos)
   const c = req.cookies?.heaven;
   if (c) {
-    // Compatibilidad con formatos antiguos donde se agregaban 7 chars a ambos lados
     try {
       if (c.length > 20) {
         const maybe = c.slice(7, -7);
         if (maybe.length > 10) return maybe.trim();
       }
-    } catch (_) {}
+    } catch {}
     return c.trim();
   }
-
   return null;
 }
 
-/**
- * Verifica el JWT y devuelve el "usuario actual".
- * - Si firmaste como { user: {...} } → devuelve user
- * - Si firmaste como { id, email, is_admin, permissions, ... } → devuelve el payload completo
- */
 function verifyToken(token) {
   try {
     if (!token) return null;
@@ -45,11 +36,6 @@ function verifyToken(token) {
   }
 }
 
-/**
- * Middleware de autenticación:
- *  - Pone req.currentUser (objeto o null)
- *  - NO corta la request; tus handlers decidirán con auth_required()
- */
 export default function authentication(req, _res, next) {
   const token = extractToken(req);
   req.currentUser = verifyToken(token);

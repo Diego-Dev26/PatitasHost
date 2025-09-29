@@ -51,7 +51,7 @@ function Mascota_list() {
         store.setLoading(false);
       });
   }
-
+  
   function handleDocPerPageChange(e) {
     setDocForPage(Number(e));
     setPage(1);

@@ -1,3 +1,4 @@
+// src/context/store.jsx
 import { createContext, useReducer } from "react";
 import Swal from "sweetalert2";
 import client from "@/api";
@@ -14,6 +15,13 @@ try {
     initialState.user = JSON.parse(localStorage.getItem("user"));
   }
 } catch {}
+
+/** Token helpers */
+function cleanToken(t = "") {
+  let s = String(t).trim();
+  if (s.toLowerCase().startsWith("bearer ")) s = s.slice(7).trim();
+  return s;
+}
 
 function makeHeaven(length) {
   let result = "";
@@ -58,14 +66,18 @@ export function StoreProvider(props) {
   const [state, dispatch] = useReducer(storeReducer, initialState);
 
   function persistSession({ token, user }) {
+    const tok = cleanToken(token);
+
     // guarda token crudo (sin Bearer) bajo "heaven" — el axios interceptor lo usa
-    if (token) {
-      localStorage.setItem("heaven", token);
-      localStorage.setItem("token", makeHeaven(token.length));     // decorativo
-      localStorage.setItem("sesionId", makeHeaven(token.length));  // decorativo
-      const next = Date.now() + Number((import.meta.env.VITE_JWT_TIME || 9)) * 60 * 1000;
+    if (tok) {
+      localStorage.setItem("heaven", tok);
+      localStorage.setItem("token", makeHeaven(tok.length));     // decorativo
+      localStorage.setItem("sesionId", makeHeaven(tok.length));  // decorativo
+      const minutes = Number(import.meta.env.VITE_JWT_TIME || 9);
+      const next = Date.now() + (isNaN(minutes) ? 9 : minutes) * 60 * 1000;
       localStorage.setItem("nextRefresh", String(next));
     }
+
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "LOGIN", payload: user });
@@ -74,7 +86,7 @@ export function StoreProvider(props) {
 
   // Espera payload con { user, token } o { user, accessToken }
   function login(payload) {
-    const token = payload?.token || payload?.accessToken; // soporta ambos
+    const token = payload?.token || payload?.accessToken;
     const user = payload?.user;
 
     if (!token || !user) {
@@ -92,9 +104,10 @@ export function StoreProvider(props) {
     const user = payload?.user; // si lo manda, lo actualizamos
 
     if (token) {
-      localStorage.setItem("heaven", token);
-      localStorage.setItem("token", makeHeaven(token.length));
-      localStorage.setItem("sesionId", makeHeaven(token.length));
+      const tok = cleanToken(token);
+      localStorage.setItem("heaven", tok);
+      localStorage.setItem("token", makeHeaven(tok.length));
+      localStorage.setItem("sesionId", makeHeaven(tok.length));
     }
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
