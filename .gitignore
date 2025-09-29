@@ -1,11 +1,3 @@
-# Node / React / Expo
-node_modules/
-dist/
-build/
-.cache/
-.expo/
-.expo-shared/
-
 # Env y credenciales
 .env
 .env.*
@@ -18,12 +10,20 @@ build/
 *.crt
 *.csr
 
-# Carpetas donde estaban las claves
-modules/authGoogle/
-modules/storageGoogle/
+# Donde estaban tus claves
+PatitasV2_rest/modules/authGoogle/
+PatitasV2_rest/modules/storageGoogle/
 
-# Django / Python (si llegas a usarlo)
+# Node / RN / Expo
+node_modules/
+dist/
+build/
+.cache/
+.expo/
+.expo-shared/
+
+# Python (si aplica)
 __pycache__/
 *.pyc
-*.sqlite3
 venv/
+EOF
