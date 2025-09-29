@@ -1,17 +1,15 @@
-// src/api/index.jsx
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const api_uri =
-  import.meta.env.VITE_NODE_ENV == "dev"
-    ? import.meta.env.VITE_GRAPHQL_URI
-    : import.meta.env.VITE_GRAPHQL_URI;
-// Usa directa la URL de tu API, sin jugar con NODE_ENV
-const client = axios.create({
-  baseURL: api_uri,
+// Usa una única variable de entorno para la API pública
+// En Vercel la pondremos a: https://patitashost.onrender.com
+const apiBaseURL = import.meta.env.VITE_API_URL;
+
+export const client = axios.create({
+  baseURL: apiBaseURL?.replace(/\/+$/, ""), // sin slash final por seguridad
   timeout: 90000,
   headers: { "Content-Type": "application/json" },
-  withCredentials: true,
+  withCredentials: true, // si NO usas cookies/sesión puedes poner false
 });
 
 // limpia strings vacíos de JSON
@@ -23,7 +21,7 @@ const cleanEmptyStrings = (obj) => {
 };
 
 client.interceptors.request.use((config) => {
-  // token
+  // token (si lo usas)
   const token = localStorage.getItem("heaven");
   if (token) config.headers["Authorization"] = token;
 
@@ -43,10 +41,11 @@ client.interceptors.response.use(
     if (err.code === "ECONNABORTED") {
       Swal.fire("Problema de Conexión", "Revisa tu internet.", "warning");
     } else if (!import.meta.env.PROD) {
-      console.error("API ERROR:", err.config.url, err.response);
+      console.error("API ERROR:", err.config?.url, err.response);
     }
     return Promise.reject(err);
   }
 );
 
+// Export por compatibilidad si lo importabas como default
 export default client;
