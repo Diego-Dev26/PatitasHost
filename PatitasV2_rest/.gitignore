@@ -1,1 +1,29 @@
-node_modules
+# Node / React / Expo
+node_modules/
+dist/
+build/
+.cache/
+.expo/
+.expo-shared/
+
+# Env y credenciales
+.env
+.env.*
+*.pem
+*.p12
+*.key
+*.keystore
+*.jks
+*.pfx
+*.crt
+*.csr
+
+# Carpetas donde estaban las claves
+modules/authGoogle/
+modules/storageGoogle/
+
+# Django / Python (si llegas a usarlo)
+__pycache__/
+*.pyc
+*.sqlite3
+venv/
