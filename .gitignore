@@ -1,1 +1,40 @@
-node_modules
+# --- Node / React / MERN ---
+node_modules/
+dist/
+build/
+.cache/
+.expo/
+.expo-shared/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Credenciales y claves ---
+.env
+.env.*
+*.pem
+*.p12
+*.key
+*.keystore
+*.jks
+*.pfx
+*.crt
+*.csr
+
+# --- Tus secretos detectados ---
+PatitasV2_rest/modules/authGoogle/
+PatitasV2_rest/modules/storageGoogle/
+
+# --- Python / Django ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+venv/
+*.log
+
+# --- Expo / React Native ---
+android/app/build/
+ios/build/
