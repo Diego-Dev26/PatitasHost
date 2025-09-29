@@ -1,0 +1,10 @@
+.thumb img {
+  transition: transform 0.2s ease;
+}
+.thumb img:hover {
+  transform: scale(1.1);
+}
+
+.thumb {
+  scroll-snap-align: start;
+}

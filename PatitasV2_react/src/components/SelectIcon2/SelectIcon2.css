@@ -1,0 +1,19 @@
+.no-scroll {
+    overflow: hidden;
+}
+
+.modal_i {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.fixed-top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    /* Otros estilos, como el ancho, alto, color de fondo, etc. */
+}

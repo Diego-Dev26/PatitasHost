@@ -1,0 +1,27 @@
+/* Dashboard1.css */
+/* Reset de contextos de apilamiento */
+.dashboard-container {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+/* Estilos para el menú desplegable */
+.user-menu-dropdown {
+  z-index: 10000 !important;
+  position: fixed !important;
+  right: 1rem;
+  top: 4.5rem;
+}
+
+/* Asegurar que los combobox estén sobre el contenido */
+.react-select__menu,
+.combobox-container {
+  z-index: 9999 !important;
+  position: relative;
+}
+
+/* Prevenir conflictos con otros componentes */
+.overlay-container {
+  z-index: 1000;
+}

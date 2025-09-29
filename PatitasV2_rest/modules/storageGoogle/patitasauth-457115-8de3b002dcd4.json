@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "jardallevel1",
+  "private_key_id": "05f17daa4f0a0eb7af696b6e82c54a96dec4d3fa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDN8LXgLRN4xii2\nYay14N7RK9wj/7BA6n8gTJ/oghLDKtDZ6BWpPi+B7gLfdOlI9bq879IDAN6N6Fb+\nIWF15kscbRapYi2jVRXDjTe7ZLoXGkUBocs9CYscJCND8DNyBVArcB8/5NZrZSix\nC1iSmolV0hwiGTnHPnUM3LI7aqUb2aMU9nHQl/zmrWdakqPyRFOJU0zu3GH2kS17\nElDfmqNtEYlW7kP+ArwxjjB5JwgSYmrjVfmQRLWMZBk2vrdt4RYbhwm//eWKiN7p\nU5AX/GF31fBuXJDmU6JuTUngPMUt8yDTzQYPkphe/eQd3xX1Ev6eEYoVYj8ZHcLF\n6gD3vJm9AgMBAAECggEAHn3m9/fEm8u/SG3C3DUc2JylXiEkECCITRh7Tro/m+0R\nekoeNu5Rq2u5uis9xUM48HOTxUUSLrG5e6wmmYXNFjrisZarSjU1YTxeBZ1+3h/S\nGtFBXdq1YafKHuuIOngl7CCQR+4Sf1k9gqU66o3+Cppu9u+EOgd53jspGpoKM0qs\nlUUdDUpxKrVarSCcRCqu5U/Mw+FQiLlB8TChoH5SO7/iDwBOQgbTjYFu6kgyG6/G\nOYTL054AleMr6Fh9JVN+Wx3GwMqY4Tker4VHPm6deX7S87UyEA435Ht1IqSAikAH\nxLZsHSHL7WLZP50rfoGmBpnKDAJrCtyNu++TPjYYYQKBgQDpp/BixbmdRl4POc5o\nK9pqTgABpFyfrrOXj8ZRzc277XOBmnipYEkuKlNzwU1So/hZG4UL8/FqHQQ5DTf+\nf1hqOA9YStjzX1l/0LYYM+JqpwmAuz8mzqJmJ2O9Kask4hH8R/Lhmc6PfaJp2UkU\n4T+u515KEa0ddKBihkNQmZgA8QKBgQDhokVhfU0++Wb1mqG3FAt2BUoVrXTrBu5j\nALegpOwbxeWBN1n2NNpsyoLXh6/Nrf+lV4Gj9CgFv9ICtZQ+VqJty4kOX8CVXFkt\nMMF8fTpFiYukmF9jpg5/fl8olwZ330Zv1bRDGf9d5GkPl6OuOCnHPrf7VWoL1Ire\nMpwygPVljQKBgH2M5uc8FYvD9uC5kAZ7oeZDOU+okLig+BF1iPwF2QmlAs7eQP3K\nJihvR95IPRMt1lGTLv+IOe1p4A4D41WV+d1BeEVaGo9TadT7Qg1pO71ROhL5CmsA\n11SKz9YiILs12rIzuvesXMjPmkjEH7fffQevfQPR0bKlK1UljeAuV/YRAoGBANDh\nh7dz55IYEz/l8jXpoZ6V0Pr2hJmb5g7TOCvI4ifn8crI8kiir18trylWnOMdZOCt\nfP/KZU7FQOdvMBjx3Rcl6PDcpg3f21Kho03bJJoBdrxer1gx/5P56qBKCBvrIGsh\n/Opt4+IJNVXQ/R+pMMwafPp5HV5sWk7PrZh3mDZ1AoGAR8TdQ5XOw8o8zjlxgXxg\nDRGIctFAPVkgyxlWQ1yhwxwA4ncLSpQrDVcW3+NujCj6TDB3L2SelSvEN1iRGs2B\nFuuWSIVB4ELGIgUlWfAFrFfeqTJT4vxVF0ty7j0mbOPFSS3WhiTvrPAW5/oDRAnH\nBsxNHtZag+a65cI5YtJwW2w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "jardalstorage@jardallevel1.iam.gserviceaccount.com",
+  "client_id": "103563561557864219505",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jardalstorage%40jardallevel1.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

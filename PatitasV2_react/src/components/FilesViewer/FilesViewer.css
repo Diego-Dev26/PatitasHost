@@ -1,0 +1,67 @@
+.border-inner-dashed {
+    position: relative;
+}
+
+.border-inner-dashed::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px dashed #48BB78;
+    /* Color verde para el borde */
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.files-upload-container {
+    position: relative;
+    /* Resto de tus estilos */
+}
+
+.files-upload-container::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho de la barra de desplazamiento */
+}
+
+.files-upload-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Color del fondo del track */
+    border-radius: 10px;
+}
+
+.files-upload-container::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Color del thumb de desplazamiento */
+    border-radius: 10px;
+}
+
+.files-upload-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Color al pasar el mouse por encima */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo negro transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay-content {
+    text-align: center;
+}
+
+.overlay-text {
+    color: white;
+    font-size: 1.5em;
+    margin-top: 12px;
+}

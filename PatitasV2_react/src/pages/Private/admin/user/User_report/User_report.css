@@ -1,0 +1,120 @@
+.printable-page {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    color: black;
+}
+
+.report-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.report-header img {
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.report-header h1 {
+    font-size: 18px;
+    color: #333;
+}
+
+.report-header h2 {
+    font-size: 14px;
+    color: #666;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    font-size: 8px;
+}
+
+.report-table th {
+    background-color: rgba(180, 180, 180, 1);;
+    font-weight: bold;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: rgba(242, 242, 242, 0.5);;
+}
+
+.boolean-true {
+    color: #4CAF50;
+    /* Verde para verdadero */
+    font-weight: bold;
+    text-align: center;
+}
+
+.boolean-false {
+    color: #F44336;
+    /* Rojo para falso */
+    font-weight: bold;
+    text-align: center;
+}
+
+.rango-tiempo {
+    display: flex;
+    font-size: 8pt;
+    text-align: left;
+}
+
+.total-registros {
+    font-size: 8pt;
+    text-align: end;
+    margin-right: 4px;
+}
+
+.before-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.watermark {
+    position: fixed;
+    top: 50%;
+    /* Central verticalmente */
+    left: 50%;
+    /* Central horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Alineación precisa */
+    opacity: 0.1;
+    /* Transparencia de la marca de agua */
+    z-index: -1;
+    /* Detrás del contenido */
+    display: none;
+    width: 50%;
+    height: auto;
+}
+
+@media print {
+
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    .printable-page {
+        margin-top: -40px;
+        /* o ajustar según sea necesario */
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    .watermark {
+        display: block;
+        /* Asegúrate de que se muestren al imprimir */
+    }
+}

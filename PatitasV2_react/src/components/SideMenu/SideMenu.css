@@ -1,0 +1,93 @@
+/* Contenedor principal */
+.side-menu {
+  width: 66px;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  overflow-y: auto;
+  background-color: #5D8A66;
+  transition: width 0.3s ease;
+}
+
+/* Cuando está expandido */
+.side-menu.expanded {
+  width: 260px;
+  background-color: #5D8A66;
+}
+
+/* Scrollbar */
+.side-menu::-webkit-scrollbar {
+  width: 6px;
+}
+.side-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+}
+.side-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Header hamburguesa */
+.side-menu > div:first-child {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Íconos en blanco */
+.side-menu .h-8,
+.side-menu .h-6,
+.side-menu .h-5 {
+  color: #FFFFFF;
+}
+
+/* Links generales */
+.side-menu a {
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.side-menu a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* Estado activo */
+.active {
+  background-color: rgba(255,255,255,0.2) !important;
+}
+
+/* Etiqueta de texto de los ítems */
+.label {
+  color: #FFFFFF !important;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 0.5rem;
+}
+
+/* Submenús */
+.submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+.submenu.max-h-40 {
+  max-height: 40rem;
+}
+.submenu a:hover {
+  background-color: rgba(47,133,90,0.1);
+}
+
+/* Líneas divisorias */
+.border-top-right,
+.border-top-right-sub {
+  border-top: 1px solid rgba(255,255,255,0.3);
+  margin-left: auto;
+}
+.border-top-right { max-width: 240px; }
+.border-top-right-sub { max-width: 215px; }
+
+/* Spacing helpers */
+.ml-3 { margin-left: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }

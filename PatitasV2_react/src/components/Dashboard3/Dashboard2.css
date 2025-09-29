@@ -1,0 +1,55 @@
+.dark-theme {
+    /* Colores de fondo */
+    --color-background: #121212;
+    /* Fondo principal */
+    --color-background-secondary: #1e1e1e;
+    /* Fondo secundario o de tarjetas/paneles */
+    --color-background-tertiary: #242424;
+    /* Fondo para barras de navegación o cabeceras */
+
+    /* Colores de texto */
+    --color-text-primary: #ffffff;
+    /* Texto principal */
+    --color-text-secondary: #b3b3b3;
+    /* Texto secundario o menos prominente */
+    --color-text-muted: #808080;
+    /* Texto con menor énfasis */
+
+    /* Colores para bordes y separadores */
+    --color-border: #333333;
+
+    /* Colores de estado, como errores, éxito, advertencia, etc. */
+    --color-error: #ff5555;
+    --color-success: #4caf50;
+    --color-warning: #ff9800;
+
+    /* Colores adicionales para links, botones, etc. */
+    --color-link: #bb86fc;
+    --color-button-background: #333333;
+    --color-button-text: #ffffff;
+
+    /* Aplicar colores a elementos generales */
+    body {
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+    }
+
+    a {
+        color: var(--color-link);
+    }
+
+    .button {
+        background-color: var(--color-button-background);
+        color: var(--color-button-text);
+    }
+
+    /* Agrega estilos adicionales según necesites */
+}
+
+
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
