@@ -19,7 +19,7 @@ build/
 *.csr
 
 # Carpetas donde estaban las claves
-modules/authGoogle/
+
 modules/storageGoogle/
 
 # Django / Python (si llegas a usarlo)
