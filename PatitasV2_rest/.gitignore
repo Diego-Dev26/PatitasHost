@@ -20,7 +20,6 @@ build/
 
 # Carpetas donde estaban las claves
 
-modules/storageGoogle/
 
 # Django / Python (si llegas a usarlo)
 __pycache__/

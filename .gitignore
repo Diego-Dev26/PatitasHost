@@ -10,9 +10,7 @@
 *.crt
 *.csr
 
-# Donde estaban tus claves
-PatitasV2_rest/modules/authGoogle/
-PatitasV2_rest/modules/storageGoogle/
+
 
 # Node / RN / Expo
 node_modules/
