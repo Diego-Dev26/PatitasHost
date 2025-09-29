@@ -15,51 +15,65 @@ const PORT = process.env.PORT || 4014;
 
 const app = express();
 
-// Confía en el proxy (Render) para que cookies Secure/SameSite=None funcionen bien
+// Render y Vercel usan proxy → necesario para cookies SameSite=None
 app.set("trust proxy", 1);
 
-// ===== CORS por variable de entorno =====
+// ===== CORS =====
 const allowList = (process.env.CORS_ORIGIN || "")
   .split(",")
-  .map(s => s.trim())
+  .map((s) => s.trim())
   .filter(Boolean);
 
-// En dev, si no hay allowList, permite localhost
+// En desarrollo permitir localhost si no hay lista
 if (!allowList.length && process.env.NODE_ENV !== "production") {
-  allowList.push("http://localhost:7011", "http://localhost:8100", "http://localhost:5173");
+  allowList.push(
+    "http://localhost:7011",
+    "http://localhost:8100",
+    "http://localhost:5173"
+  );
 }
 
-app.use(cors({
+const corsOptions = {
   origin: (origin, cb) => {
-    // Permite requests sin origin (curl/healthchecks)
-    if (!origin) return cb(null, true);
-    return cb(null, allowList.includes(origin));
+    if (!origin) return cb(null, true); // permitir healthchecks/curl
+    if (allowList.includes(origin)) return cb(null, true);
+    return cb(new Error("Not allowed by CORS"));
   },
   credentials: true,
-}));
+  methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Accept",
+    "Authorization", // ← clave, así sí pasa el token
+    "X-Requested-With",
+  ],
+};
+
+app.use(cors(corsOptions));
+// responder preflight
+app.options("*", cors(corsOptions));
 
 // ===== Middlewares base =====
 app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());
 
-// ===== Conexión DB =====
+// ===== Conexión a DB =====
 await connectDB();
 
-// Solo en dev corre “seeds” / actualizaciones
+// ===== Seeds en dev =====
 if (process.env.NODE_ENV !== "production") {
-  // comentar después de la primera vez si ya no quieres actualizar/sembrar cada arranque
-  updatePermission(); // Actualizar Permisos
+  updatePermission();
   createAdminUser();
 }
 
-// ===== Health =====
+// ===== Healthcheck =====
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
-// ===== Tus middlewares personalizados =====
+// ===== Middlewares custom (auth/query) =====
 configureMiddleware(app);
 
-// ===== Rutas de módulos =====
+// ===== Rutas =====
 app.use("/", routes);
 
 // ===== Start HTTP =====
