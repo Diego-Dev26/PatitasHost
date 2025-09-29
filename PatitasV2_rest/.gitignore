@@ -6,17 +6,6 @@ build/
 .expo/
 .expo-shared/
 
-# Env y credenciales
-.env
-.env.*
-*.pem
-*.p12
-*.key
-*.keystore
-*.jks
-*.pfx
-*.crt
-*.csr
 
 # Carpetas donde estaban las claves
 
